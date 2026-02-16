@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agrosolutions-property-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agrosolutions-property-api
+  template:
+    metadata:
+      labels:
+        app: agrosolutions-property-api
+    spec:
+      containers:
+      - name: agrosolutions-property-api
+        image: marioguilhermedev/agrosolutions-property:latest
+        ports:
+        - containerPort: 8080
+
+        envFrom:
+        - configMapRef:
+            name: agrosolutions-property-config
+        - secretRef:
+            name: agrosolutions-property-secret
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
