@@ -12,5 +12,5 @@ data:
   Messaging__Destinations__0__RoutingKey: deleted.user
   Jwt__Issuer: AgroSolutions.Identity
   Jwt__Audience: ClientsAgroSolutions
-  AuthService__Url: https://localhost:8080/
+  AuthService__Url: http://localhost:8080/
   AuthService__TimeoutInSeconds: "60"
