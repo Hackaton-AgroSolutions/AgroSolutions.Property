@@ -1,4 +1,4 @@
-﻿﻿using Serilog;
+﻿using Serilog;
 using Serilog.Context;
 
 namespace AgroSolutions.Property.API.Middleware;

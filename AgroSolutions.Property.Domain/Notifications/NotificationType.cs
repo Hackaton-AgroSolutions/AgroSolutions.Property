@@ -8,5 +8,5 @@ public enum NotificationType : byte
     [Description("The crop with ID {0} was not found")] CropNotFound,
     [Description("The property with ID {0} was not found")] PropertyNotFound,
     [Description("The property with name '{0}' already exists")] PropertyNameAlreadyExists,
-    [Description("The property field with name '{0}' already exists")]  PropertyFieldNameAlreadyExists
+    [Description("The property field with name '{0}' already exists")] PropertyFieldNameAlreadyExists
 }

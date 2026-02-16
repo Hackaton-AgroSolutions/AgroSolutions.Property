@@ -1,5 +1,4 @@
 ﻿using AgroSolutions.Property.Application.Queries.GetProperty;
-using AgroSolutions.Property.Domain.Entities;
 using AgroSolutions.Property.Domain.Notifications;
 using AgroSolutions.Property.Infrastructure.Persistence;
 using FluentAssertions;

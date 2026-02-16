@@ -1,12 +1,9 @@
 ﻿using AgroSolutions.Property.Application.Commands.CreatePropertyFields;
-using AgroSolutions.Property.Application.Queries.GetProperty;
 using AgroSolutions.Property.Domain.Entities;
 using AgroSolutions.Property.Domain.Notifications;
 using AgroSolutions.Property.Infrastructure.Persistence;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Moq;
-using static Azure.Core.HttpHeader;
 
 namespace AgroSolutions.Property.Tests.Commands;
 
