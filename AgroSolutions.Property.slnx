@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="AgroSolutions.Property.API/AgroSolutions.Property.API.csproj" Id="69a94a54-c9b2-4459-b863-2795885d4bec" />
+  <Project Path="AgroSolutions.Property.Application/AgroSolutions.Property.Application.csproj" />
+  <Project Path="AgroSolutions.Property.Domain/AgroSolutions.Property.Domain.csproj" />
+  <Project Path="AgroSolutions.Property.Infrastructure/AgroSolutions.Property.Infrastructure.csproj" />
+  <Project Path="AgroSolutions.Property.Tests/AgroSolutions.Property.Tests.csproj" Id="d0aaefa7-7400-4509-80cf-d81f1117b186" />
+</Solution>
