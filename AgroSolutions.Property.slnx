@@ -1,4 +1,12 @@
 <Solution>
+  <Folder Name="/k8s/">
+    <File Path="k8s/agrosolutions-property-api.yaml" />
+    <File Path="k8s/agrosolutions-property-configmap.yaml" />
+    <File Path="k8s/agrosolutions-property-hpa.yaml" />
+    <File Path="k8s/agrosolutions-property-secret.yaml" />
+    <File Path="k8s/agrosolutions-property-service.yaml" />
+    <File Path="k8s/agrosolutions-property-sqlserver.yaml" />
+  </Folder>
   <Project Path="AgroSolutions.Property.API/AgroSolutions.Property.API.csproj" Id="69a94a54-c9b2-4459-b863-2795885d4bec" />
   <Project Path="AgroSolutions.Property.Application/AgroSolutions.Property.Application.csproj" />
   <Project Path="AgroSolutions.Property.Domain/AgroSolutions.Property.Domain.csproj" />
