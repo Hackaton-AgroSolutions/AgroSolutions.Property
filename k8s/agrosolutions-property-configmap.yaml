@@ -13,4 +13,4 @@ data:
   Jwt__Issuer: AgroSolutions.Identity
   Jwt__Audience: ClientsAgroSolutions
   AuthService__Url: https://localhost:7132/
-  AuthService__TimeoutInSeconds: 60
+  AuthService__TimeoutInSeconds: "60"
