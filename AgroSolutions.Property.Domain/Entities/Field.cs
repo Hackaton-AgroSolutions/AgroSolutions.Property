@@ -10,6 +10,11 @@ public class Field
     public Crop Crop { get; private set; } = null!;
     public decimal TotalAreaInHectares { get; private set; }
 
+    public Field()
+    {
+        Name = string.Empty;
+    }
+
     public Field(int fieldId, string name, Crop crop, decimal totalAreaInHectares)
     {
         FieldId = fieldId;
