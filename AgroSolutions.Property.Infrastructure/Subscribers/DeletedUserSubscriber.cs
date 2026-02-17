@@ -45,8 +45,8 @@ public class DeletedUserSubscriber(IServiceProvider serviceProvider, IOptions<Ra
                         return;
                     }
 
-                    using IServiceScope messageScope = _serviceProvider.CreateScope();
-                    IUnitOfWork unitOfWork = messageScope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+                    using IServiceScope scope = _serviceProvider.CreateScope();
+                    IUnitOfWork unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
 
                     await unitOfWork.BeginTransactionAsync(cancellationToken);
                     await unitOfWork.Properties.DeleteAllPropertiesFromUserIdAsync(deletedUserEvent.UserId, cancellationToken);
