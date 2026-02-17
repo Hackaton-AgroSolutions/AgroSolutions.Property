@@ -12,6 +12,8 @@ public class DeletePropertyCommandHandler(INotificationContext notification, IUn
 
     public async Task<Unit?> Handle(DeletePropertyCommand request, CancellationToken cancellationToken)
     {
+        Log.Information("Starting the property deletion.");
+
         Domain.Entities.Property? property = await _unitOfWork.Properties.GetPropertyByIdAndUserIdTrackingAsync(request.PropertyId, request.UserId, cancellationToken);
         if (property is null)
         {
@@ -25,6 +27,7 @@ public class DeletePropertyCommandHandler(INotificationContext notification, IUn
         _unitOfWork.Properties.DeleteProperty(property);
         await _unitOfWork.CommitAsync(cancellationToken);
 
+        Log.Information("Finished the property deletion.");
         return Unit.Value;
     }
 }

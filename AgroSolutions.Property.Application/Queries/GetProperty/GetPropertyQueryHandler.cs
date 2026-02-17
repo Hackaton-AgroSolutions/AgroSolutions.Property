@@ -13,6 +13,8 @@ public class GetPropertyQueryHandler(INotificationContext notification, IUnitOfW
 
     public async Task<GetPropertyQueryResult?> Handle(GetPropertyQuery request, CancellationToken cancellationToken)
     {
+        Log.Information("Started the get property.");
+
         Domain.Entities.Property? property = await _unitOfWork.Properties.GetPropertyByIdAndUserIdWithFieldsAndCropNoTrackingAsync(request.PropertyId, request.UserId, cancellationToken);
         if (property is null)
         {
@@ -21,6 +23,7 @@ public class GetPropertyQueryHandler(INotificationContext notification, IUnitOfW
             return null;
         }
 
+        Log.Information("Finished the get property.");
         return new(
             property.PropertyId,
             property.UserId,

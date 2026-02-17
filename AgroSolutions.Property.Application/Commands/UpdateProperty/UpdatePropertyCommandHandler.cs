@@ -12,6 +12,8 @@ public class UpdatePropertyCommandHandler(INotificationContext notification, IUn
 
     public async Task<UpdatePropertyCommandResult?> Handle(UpdatePropertyCommand request, CancellationToken cancellationToken)
     {
+        Log.Information("Starting the update of property.");
+
         Domain.Entities.Property? property = await _unitOfWork.Properties.GetPropertyByIdAndUserIdTrackingAsync(request.PropertyId, request.UserId, cancellationToken);// ?? throw new PropertyNotFoundException();
         if (property is null)
         {
@@ -32,6 +34,7 @@ public class UpdatePropertyCommandHandler(INotificationContext notification, IUn
         property.Update(request.Name, request.Description);
         await _unitOfWork.CommitAsync(cancellationToken);
 
+        Log.Information("Finished the update of property.");
         return new(property.PropertyId, property.UserId, property.Name, property.Description);
     }
 }

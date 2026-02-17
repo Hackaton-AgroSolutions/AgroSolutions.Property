@@ -11,8 +11,12 @@ public class GetPropertiesQueryHandler(IUnitOfWork unitOfWork) : IRequestHandler
 
     public async Task<IEnumerable<GetPropertiesQueryResult>> Handle(GetPropertiesQuery request, CancellationToken cancellationToken)
     {
+        Log.Information("Started the get properties.");
+
         List<Domain.Entities.Property> properties = await _unitOfWork.Properties.GetAllPropertiesWithFieldsAndCropByUserIdNoTrackingAsync(request.UserId, cancellationToken);
         Log.Information("Properties found in a total of {TotalRecords} records.", properties.Count);
+
+        Log.Information("Finished the get properties.");
         return properties.Select(p => new GetPropertiesQueryResult(
             p.PropertyId,
             p.UserId,

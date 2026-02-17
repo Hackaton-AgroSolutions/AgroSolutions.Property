@@ -14,6 +14,8 @@ public class CreatePropertyFieldsCommandHandler(INotificationContext notificatio
 
     public async Task<IEnumerable<CreatePropertyFieldsCommandResult>?> Handle(CreatePropertyFieldsCommand request, CancellationToken cancellationToken)
     {
+        Log.Information("Starting the creation of property fields for property.");
+
         int totalInserted = 0;
         Domain.Entities.Property? property = await _unitOfWork.Properties.GetPropertyByIdAndUserIdWithFieldsTrackingAsync(request.PropertyId, request.UserId, cancellationToken);
         if (property is null)
@@ -49,6 +51,7 @@ public class CreatePropertyFieldsCommandHandler(INotificationContext notificatio
         }
         await _unitOfWork.CommitAsync(cancellationToken);
 
+        Log.Information("Finished the creation of property fields for property.");
         return totalInserted == 0
             ? null
             : property.Fields.Select(f => new CreatePropertyFieldsCommandResult(

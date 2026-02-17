@@ -14,6 +14,8 @@ public class UpdatePropertyFieldCommandHandler(INotificationContext notification
 
     public async Task<UpdatePropertyFieldCommandResult?> Handle(UpdatePropertyFieldCommand request, CancellationToken cancellationToken)
     {
+        Log.Information("Started the update of property field.");
+
         Domain.Entities.Property? property = await _unitOfWork.Properties.GetPropertyByIdAndUserIdWithFieldsTrackingAsync(request.PropertyId, request.UserId, cancellationToken);
         if (property is null)
         {
@@ -43,6 +45,7 @@ public class UpdatePropertyFieldCommandHandler(INotificationContext notification
         field.Update(request.Name, request.TotalAreaInHectares, crop);
         await _unitOfWork.CommitAsync(cancellationToken);
 
+        Log.Information("Finished the update of property field.");
         return new(
             field.PropertyId,
             request.UserId,

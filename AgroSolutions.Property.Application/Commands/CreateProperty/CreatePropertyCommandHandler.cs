@@ -12,6 +12,8 @@ public class CreatePropertyCommandHandler(INotificationContext notification, IUn
 
     public async Task<CreatePropertyCommandResult?> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
     {
+        Log.Information("Starting the creation of property for user.");
+
         if (await _unitOfWork.Properties.CheckIfPropertyNameExistsAsync(request.Name, cancellationToken))
         {
             Log.Warning("The property with Name {PropertyName} for User with ID {UserId} already exists.", request.Name, request.UserId);
@@ -25,6 +27,7 @@ public class CreatePropertyCommandHandler(INotificationContext notification, IUn
         await _unitOfWork.Properties.CreatePropertyAsync(property, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
+        Log.Information("Finished the creation of property for user.");
         return new(property.PropertyId, request.UserId, property.Name, property.Description);
     }
 }

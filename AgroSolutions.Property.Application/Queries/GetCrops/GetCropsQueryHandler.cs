@@ -11,8 +11,12 @@ public class GetCropsQueryHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetC
 
     public async Task<IEnumerable<GetCropQueryResult>> Handle(GetCropsQuery request, CancellationToken cancellationToken)
     {
+        Log.Information("Started the get by all crops.");
+
         List<Crop> crops = await _unitOfWork.Crops.GetAllAsNoTrackingAsync(cancellationToken);
         Log.Information("Crops found in a total of {TotalRecords} records.", crops.Count);
+
+        Log.Information("Finished the get by all crops.");
         return crops.Select(c => new GetCropQueryResult(c.CropId, c.Name));
     }
 }

@@ -13,6 +13,8 @@ public class DeletePropertyFieldCommandHandler(INotificationContext notification
 
     public async Task<Unit?> Handle(DeletePropertyFieldCommand request, CancellationToken cancellationToken)
     {
+        Log.Information("Started the property field deletion.");
+
         Domain.Entities.Property? property = await _unitOfWork.Properties.GetPropertyByIdAndUserIdWithFieldsTrackingAsync(request.PropertyId, request.UserId, cancellationToken);
         if (property is null)
         {
@@ -34,6 +36,7 @@ public class DeletePropertyFieldCommandHandler(INotificationContext notification
         property.Fields.Remove(field);
         await _unitOfWork.CommitAsync(cancellationToken);
 
+        Log.Information("Finished the property field deletion.");
         return Unit.Value;
     }
 }
