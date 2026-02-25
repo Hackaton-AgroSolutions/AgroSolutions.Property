@@ -8,14 +8,26 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi;
+using Prometheus;
 using Serilog;
+using Serilog.Sinks.Grafana.Loki;
+
+const string APP_NAME = "agro-solution-property-api";
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] (CorrelationId={CorrelationId}) {Message:lj} {NewLine}{Exception}")
+    .WriteTo.GrafanaLoki("http://loki:3100", [
+        new()
+        {
+            Key = "app",
+            Value = APP_NAME
+        }
+    ])
     .CreateLogger();
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog();
 
 builder.Services
     .AddInfrastructure(builder.Configuration)
@@ -24,8 +36,6 @@ builder.Services
 builder.Services
     .AddControllers(options => options.Filters.Add<RestResponseFilter>())
     .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
-
-builder.Host.UseSerilog();
 
 builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
@@ -96,17 +106,16 @@ catch (Exception ex)
 }
 #endregion
 
-if (app.Environment.IsDevelopment())
+app.UseSerilogRequestLogging();
+app.UseMetricServer();
+app.MapGet("/", context =>
 {
-    app.MapGet("/", context =>
-    {
-        context.Response.Redirect("/swagger/index.html");
-        return Task.CompletedTask;
-    });
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.UseHttpsRedirection();
-}
+    context.Response.Redirect("/swagger/index.html");
+    return Task.CompletedTask;
+});
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseHttpsRedirection();
 
 app.UseMiddleware<CorrelationIdMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
@@ -114,6 +123,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapMetrics();
 
 app.MapHealthChecks("/health");
 
