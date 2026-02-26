@@ -14,3 +14,4 @@ data:
   Jwt__Audience: ClientsAgroSolutions
   AuthService__Url: http://agrosolutions-identity-api/
   AuthService__TimeoutInSeconds: "60"
+  GrafanaLoki__Url: http://loki:3100
