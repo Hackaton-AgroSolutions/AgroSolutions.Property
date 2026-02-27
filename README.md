@@ -100,7 +100,7 @@ IMAGEM AQUI
     ```
     kubectl port-forward svc/agrosolutions-property-api 8081:80
     ```
-    - Acesse [https://localhost:8081/swagger/index.html](https://localhost:8081/swagger/index.html)
+    - Acesse [http://localhost:8081/swagger/index.html](http://localhost:8081/swagger/index.html)
 
 ## 🚀 Requisições para Kong API Gateway
 ```javascript
