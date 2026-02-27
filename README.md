@@ -42,6 +42,7 @@ IMAGEM AQUI
  - ASP.NET Core;
  - Entity Framework Core;
  - FluentValidation para validações robustas;
+ - BackgroundService;
  - Autenticação e autorização via JWT;
  - Documentação de APIs com Swagger / OpenAPI.
 
