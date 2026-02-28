@@ -1,5 +1,5 @@
 # 🌱 AgroSolutions.Property
-> O serviço de gestão de propriedades AgroSolutions Hackathon mantém o contexto das propriedades rurais, juntamente com seus terrenos e as culturas ali presentes..
+> O serviço de gestão de propriedades AgroSolutions Hackathon mantém o contexto das propriedades rurais, juntamente com seus terrenos e as culturas ali presentes.
 
 ## 🚜 Funcionalidades
   - Busca de todas as Culturas cadastradas;
